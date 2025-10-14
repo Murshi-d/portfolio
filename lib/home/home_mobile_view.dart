@@ -122,7 +122,9 @@ class _HomeMobileViewState extends State<HomeMobileView> {
                     .bold,
               ),
               40.hBox,
-              ...projectList.map((e) => ProjectTileMob(details: e)).toList(),
+              ...projectList
+                  .map((e) => ProjectTileMob(details: e).pB(20))
+                  .toList(),
               Linkify(
                 text: bottomText,
                 style:

@@ -1,4 +1,4 @@
-# ✨ Ranjan's Dev Portfolio
+# ✨ Murshid's  Portfolio
 
 A beautiful portfolio app built with Flutter web to showcase my work as a developer. 
 
