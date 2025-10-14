@@ -8,7 +8,7 @@ You can find a live demo [here](https://portfolio-9a909.web.app/#/).
 
 ### Desktop
 
-![Desktop](/preview/video.gif)
+![Desktop](/preview/live_demo_portfolio.gif)
 
 ### Mobile
 

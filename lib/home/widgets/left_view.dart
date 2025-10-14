@@ -15,105 +15,123 @@ class LeftView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Align(
-      alignment: Alignment.topRight,
-      child: Padding(
-        padding: const EdgeInsets.only(right: 30),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              "Murshid KK",
-              style:
-                  context.headL.w700.copyWith(fontSize: 48).col(Colors.white),
-            ),
-            10.hBox,
-            Text(
-              "Flutter Developer",
-              style: context.bodyL.w500.copyWith(fontSize: 20),
-            ),
-            20.hBox,
-            SizedBox(
-              width: context.dWidth * 0.3,
-              child: Text(
-                "I am a Flutter Developer with 1 years of experience in building cross platform applications.",
-                style: context.bodyM.w400
-                    .col(Colors.white.withOpacity(0.5))
-                    .copyWith(fontSize: 16),
-                maxLines: 2,
+    return SingleChildScrollView(
+      child: Align(
+        alignment: Alignment.center,
+        child: Padding(
+          padding: const EdgeInsets.only(right: 30),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              50.hBox,
+              ClipRRect(
+                borderRadius: BorderRadiusGeometry.circular(50),
+                child: Image.asset(
+                  'assets/images/murshid.png',
+                  height: 300,
+                  width: 300,
+                ),
               ),
-            ),
-            60.hBox,
-            ValueListenableBuilder(
-              valueListenable: currentSection,
-              builder: (context, value, child) {
-                return Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisSize: MainAxisSize.min,
-                  children: ["About", "Experience", "Projects"]
-                      .asMap()
-                      .entries
-                      .map(
-                        (e) => GestureDetector(
-                          onTap: () {
-                            currentSection.value = e.value;
-                            observerController.animateTo(
-                              index: e.key,
-                              duration: const Duration(milliseconds: 400),
-                              curve: Curves.easeInOut,
-                            );
-                          },
-                          child: SectionTile(
-                            selected: e.value == value,
-                            title: e.value,
-                          ).pB(20),
-                        ),
-                      )
-                      .toList(),
-                );
-              },
-            ),
-            40.hBox,
-            Row(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                IconButton(
-                  onPressed: () async {
-                    final uri = Uri.parse("https://github.com/Murshi-d/");
-                    if (await canLaunchUrl(uri)) {
-                      launchUrl(uri);
-                    }
-                  },
-                  icon: const FaIcon(
-                    FontAwesomeIcons.github,
-                    color: Colors.white54,
-                  ),
+              30.hBox,
+              Text(
+                "Murshid KK",
+                style:
+                    context.headL.w700.copyWith(fontSize: 48).col(Colors.white),
+              ),
+              10.hBox,
+              Text(
+                "Flutter Developer",
+                style: context.bodyL.w500.copyWith(fontSize: 20),
+              ),
+              20.hBox,
+              SizedBox(
+                width: context.dWidth * 0.3,
+                child: Text(
+                  "I am a Flutter Developer with 1 years of experience in building cross platform applications.",
+                  style: context.bodyM.w400
+                      .col(Colors.white.withOpacity(0.5))
+                      .copyWith(fontSize: 16),
+                  maxLines: 2,
                 ),
-                IconButton(
-                  onPressed: () {},
-                  icon: const FaIcon(
-                    FontAwesomeIcons.instagram,
-                    color: Colors.white54,
+              ),
+              60.hBox,
+              ValueListenableBuilder(
+                valueListenable: currentSection,
+                builder: (context, value, child) {
+                  return Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisSize: MainAxisSize.min,
+                    children: ["About", "Experience", "Projects"]
+                        .asMap()
+                        .entries
+                        .map(
+                          (e) => GestureDetector(
+                            onTap: () {
+                              currentSection.value = e.value;
+                              observerController.animateTo(
+                                index: e.key,
+                                duration: const Duration(milliseconds: 400),
+                                curve: Curves.easeInOut,
+                              );
+                            },
+                            child: SectionTile(
+                              selected: e.value == value,
+                              title: e.value,
+                            ).pB(20),
+                          ),
+                        )
+                        .toList(),
+                  );
+                },
+              ),
+              40.hBox,
+              Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  IconButton(
+                    onPressed: () async {
+                      final uri = Uri.parse("https://github.com/Murshi-d/");
+                      if (await canLaunchUrl(uri)) {
+                        launchUrl(uri);
+                      }
+                    },
+                    icon: const FaIcon(
+                      FontAwesomeIcons.github,
+                      color: Colors.white54,
+                    ),
                   ),
-                ),
-                IconButton(
-                  onPressed: () {},
-                  icon: const FaIcon(
-                    FontAwesomeIcons.twitter,
-                    color: Colors.white54,
+                  // IconButton(
+                  //   onPressed: () {},
+                  //   icon: const FaIcon(
+                  //     FontAwesomeIcons.instagram,
+                  //     color: Colors.white54,
+                  //   ),
+                  // ),
+                  // IconButton(
+                  //   onPressed: () {},
+                  //   icon: const FaIcon(
+                  //     FontAwesomeIcons.twitter,
+                  //     color: Colors.white54,
+                  //   ),
+                  // ),
+                  IconButton(
+                    onPressed: () async {
+                      final uri =
+                          Uri.parse("https://www.linkedin.com/in/murshid-kk-/");
+                      if (await canLaunchUrl(uri)) {
+                        launchUrl(uri);
+                      }
+                    },
+                    icon: const FaIcon(
+                      FontAwesomeIcons.linkedin,
+                      color: Colors.white54,
+                    ),
                   ),
-                ),
-                IconButton(
-                  onPressed: () {},
-                  icon: const FaIcon(
-                    FontAwesomeIcons.linkedin,
-                    color: Colors.white54,
-                  ),
-                ),
-              ],
-            ),
-          ],
+                ],
+              ),
+            ],
+          ),
         ),
       ),
     );

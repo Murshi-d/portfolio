@@ -26,16 +26,27 @@ class _HomeMobileViewState extends State<HomeMobileView> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              Center(
+                child: ClipRRect(
+                  borderRadius: BorderRadiusGeometry.circular(50),
+                  child: Image.asset(
+                    'assets/images/murshid.png',
+                    height: 300,
+                    width: 300,
+                  ),
+                ),
+              ).pT(40),
+              20.hBox,
               Text(
                 "Murshid KK",
                 style:
                     context.headL.w700.copyWith(fontSize: 43).col(Colors.white),
-              ),
+              ).pH(30),
               10.hBox,
               Text(
                 "Flutter Developer",
                 style: context.bodyL.w500.copyWith(fontSize: 18),
-              ),
+              ).pH(30),
               20.hBox,
               Text(
                 "I am a Flutter Developer with 1 years of experience in building cross platform applications.",
@@ -43,7 +54,7 @@ class _HomeMobileViewState extends State<HomeMobileView> {
                     .col(Colors.white.withOpacity(0.5))
                     .copyWith(fontSize: 16),
                 maxLines: 2,
-              ),
+              ).pH(30),
               25.hBox,
               Row(
                 mainAxisSize: MainAxisSize.min,
@@ -61,36 +72,42 @@ class _HomeMobileViewState extends State<HomeMobileView> {
                       color: Colors.white54,
                     ),
                   ),
+                  // IconButton(
+                  //   onPressed: () {},
+                  //   icon: const FaIcon(
+                  //     FontAwesomeIcons.instagram,
+                  //     color: Colors.white54,
+                  //   ),
+                  // ),
+                  // IconButton(
+                  //   onPressed: () {},
+                  //   icon: const FaIcon(
+                  //     FontAwesomeIcons.twitter,
+                  //     color: Colors.white54,
+                  //   ),
+                  // ),
                   IconButton(
-                    onPressed: () {},
-                    icon: const FaIcon(
-                      FontAwesomeIcons.instagram,
-                      color: Colors.white54,
-                    ),
-                  ),
-                  IconButton(
-                    onPressed: () {},
-                    icon: const FaIcon(
-                      FontAwesomeIcons.twitter,
-                      color: Colors.white54,
-                    ),
-                  ),
-                  IconButton(
-                    onPressed: () {},
+                    onPressed: () async {
+                      final uri =
+                          Uri.parse("https://www.linkedin.com/in/murshid-kk-/");
+                      if (await canLaunchUrl(uri)) {
+                        launchUrl(uri);
+                      }
+                    },
                     icon: const FaIcon(
                       FontAwesomeIcons.linkedin,
                       color: Colors.white54,
                     ),
                   ),
                 ],
-              ),
+              ).pH(30),
               100.hBox,
               Text(
                 "ABOUT",
                 style: context.bodyM
                     .copyWith(fontSize: 14, letterSpacing: 1.5)
                     .bold,
-              ),
+              ).pH(30),
               40.hBox,
               EasyRichText(
                 about,
@@ -104,14 +121,14 @@ class _HomeMobileViewState extends State<HomeMobileView> {
                         context.bodyM.bold.copyWith(fontSize: 16, height: 1.5),
                   )
                 ],
-              ),
+              ).pH(30),
               60.hBox,
               Text(
                 "EXPERIENCE",
                 style: context.bodyM
                     .copyWith(fontSize: 14, letterSpacing: 1.5)
                     .bold,
-              ),
+              ).pH(30),
               40.hBox,
               ...expList.map((e) => ExpTileMob(details: e)).toList(),
               60.hBox,
@@ -120,7 +137,7 @@ class _HomeMobileViewState extends State<HomeMobileView> {
                 style: context.bodyM
                     .copyWith(fontSize: 14, letterSpacing: 1.5)
                     .bold,
-              ),
+              ).pH(30),
               40.hBox,
               ...projectList
                   .map((e) => ProjectTileMob(details: e).pB(20))
@@ -137,53 +154,105 @@ class _HomeMobileViewState extends State<HomeMobileView> {
                         const SnackBar(content: Text("Cannot open link")));
                   }
                 },
-              ),
+              ).pH(30),
             ],
-          ).pH(30).pT(40),
+          ),
         ),
       ),
     );
   }
 }
 
-class ProjectTileMob extends StatelessWidget {
+class ProjectTileMob extends StatefulWidget {
   const ProjectTileMob({
     Key? key,
     required this.details,
   }) : super(key: key);
 
   final Map details;
+  @override
+  State<ProjectTileMob> createState() => _ProjectTileMobState();
+}
+
+class _ProjectTileMobState extends State<ProjectTileMob>
+    with SingleTickerProviderStateMixin {
+  bool hover = false;
+  Color normalColor = Colors.transparent;
+
+  Color hoverColor = const Color.fromRGBO(45, 212, 191, 0.1);
+
+  @override
+  void initState() {
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(
-          "${details["title"]}",
-          style: context.bodyM.col(Colors.white).w600,
+    return MouseRegion(
+      onHover: (event) {
+        setState(() {
+          hover = true;
+        });
+      },
+      onExit: (event) {
+        setState(() {
+          hover = false;
+        });
+      },
+      child: AnimatedContainer(
+        margin: const EdgeInsets.symmetric(horizontal: 10),
+        padding: const EdgeInsets.all(20),
+        decoration: BoxDecoration(
+          color: hover ? hoverColor : normalColor,
+          borderRadius: BorderRadius.circular(20),
         ),
-        10.hBox,
-        Text(
-          "${details["description"]}",
-          style: context.bodyS
-              .copyWith(height: 1.5, color: Colors.white54, fontSize: 14),
+        // color: hover ? hoverColor : normalColor,
+        duration: const Duration(milliseconds: 100),
+        curve: Curves.easeInOut,
+        child: InkWell(
+          hoverColor: Colors.transparent,
+          splashColor: Colors.transparent,
+          borderRadius: BorderRadius.circular(20),
+          onTap: () async {
+            final uri = Uri.parse(widget.details["link"]);
+            if (await canLaunchUrl(uri)) {
+              launchUrl(uri);
+            }
+          },
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                "${widget.details["title"]}",
+                style: context.bodyM.col(Colors.white).w600,
+              ),
+              10.hBox,
+              Text(
+                "${widget.details["description"]}",
+                style: context.bodyS
+                    .copyWith(height: 1.5, color: Colors.white54, fontSize: 14),
+              ),
+              10.hBox,
+              Wrap(
+                spacing: 10,
+                runSpacing: 5,
+                children: (widget.details["skills"] as List<String>)
+                    .map((e) => CustomChip(text: e))
+                    .toList(),
+              ),
+              15.hBox,
+              ...(widget.details["img"] as List<String>)
+                  .map((imgPath) => Padding(
+                        padding: const EdgeInsets.only(
+                            bottom: 12), // Adjust spacing as needed
+                        child: Image.asset(imgPath),
+                      ))
+                  .toList(),
+              40.hBox,
+            ],
+          ),
         ),
-        10.hBox,
-        Wrap(
-          spacing: 10,
-          runSpacing: 5,
-          children: (details["skills"] as List<String>)
-              .map((e) => CustomChip(text: e))
-              .toList(),
-        ),
-        15.hBox,
-        Image.asset(
-          details["img"],
-          height: 300,
-        ),
-        40.hBox,
-      ],
+      ),
     );
   }
 }
@@ -226,6 +295,6 @@ class ExpTileMob extends StatelessWidget {
         ),
         40.hBox,
       ],
-    );
+    ).pH(30);
   }
 }

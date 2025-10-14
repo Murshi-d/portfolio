@@ -70,7 +70,8 @@ List<Map<String, dynamic>> projectList = [
         "Developed a grocery shopping application with Flutter frontend. Focused on building a clean and responsive UI, product listing, and cart management features for a smooth user experience."
             "\nInspired by Musemind Design agency",
     "skills": ["Flutter", "Dart", "UI/UX Design"],
-    "img": ["assets/images/grocery_1.png"], // placeholder image
+    "img": ["assets/images/grocery_1.png"],
+    "link": "https://github.com/Murshi-d/Grocery-App"
   },
   {
     "id": 2,
@@ -88,6 +89,7 @@ List<Map<String, dynamic>> projectList = [
       "Cross-Platform Development"
     ],
     "img": ["assets/images/emp_screen_1.png", "assets/images/emp_screen_3.png"],
+    "link": "https://github.com/Murshi-d/Jewellery_pos_app"
   },
   {
     "id": 3,
@@ -95,6 +97,7 @@ List<Map<String, dynamic>> projectList = [
     "description":
         "Created a Flutter-based news application called 'NewsX' that delivers the latest updates across multiple categories. Implemented smooth navigation, paginated news feeds, and an engaging UI for a user-friendly experience.",
     "skills": ["Flutter", "Dart", "API Integration"],
-    "img": ["assets/images/newsx_1.png"], // placeholder image
+    "img": ["assets/images/newsx_1.png"],
+    "link": "https://github.com/Murshi-d/News_app"
   },
 ];
