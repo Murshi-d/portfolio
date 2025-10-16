@@ -1,6 +1,7 @@
 # ✨ Murshid's  Portfolio
 
 A beautiful portfolio app built with Flutter web to showcase my work as a developer. 
+I am a Flutter Developer with 1 years of experience in building cross platform applications.
 
 ## 🚀 Live Demo
 
@@ -12,7 +13,7 @@ You can find a live demo [here](https://portfolio-9a909.web.app/#/).
 
 ### Mobile
 
-![Mobile](/preview/mobile.png)
+![Mobile](preview/mobile_live.gif)
 
 ## 📱 Features
 
@@ -20,13 +21,5 @@ You can find a live demo [here](https://portfolio-9a909.web.app/#/).
 - ⚡️ Lightning fast with Flutter web
 - 📱 Mobile, desktop, and web support
 
-## 🛠 Built With
 
-- [Flutter](https://flutter.dev/)
-- [Flutter Web](https://flutter.dev/web)
-
-
-
-## 🙌 Inspiration
-
-Inspired from this site https://brittanychiang.com/.
+-------------------------------------------------------------------------------------------
